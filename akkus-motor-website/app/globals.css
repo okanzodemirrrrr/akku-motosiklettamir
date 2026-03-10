@@ -1,0 +1,305 @@
+@import "tailwindcss";
+
+@theme {
+  /* Yanık Turuncu - Egzoz Borusu */
+  --color-burnt-50: #fef5f1;
+  --color-burnt-100: #fde8df;
+  --color-burnt-200: #fbcfbe;
+  --color-burnt-300: #f8ad8e;
+  --color-burnt-400: #f4825c;
+  --color-burnt-500: #ef5f2b;
+  --color-burnt-600: #d94515;
+  --color-burnt-700: #b33612;
+  --color-burnt-800: #8f2e15;
+  --color-burnt-900: #742914;
+
+  /* Gres Yağı Mavisi */
+  --color-grease-50: #f0f7ff;
+  --color-grease-100: #e0effe;
+  --color-grease-200: #b9ddfe;
+  --color-grease-300: #7cc2fd;
+  --color-grease-400: #36a4fa;
+  --color-grease-500: #0c87eb;
+  --color-grease-600: #0069c9;
+  --color-grease-700: #0153a3;
+  --color-grease-800: #064786;
+  --color-grease-900: #0b3b6f;
+
+  /* Antrasit - Asfalt */
+  --color-asphalt-50: #f6f6f7;
+  --color-asphalt-100: #e1e3e5;
+  --color-asphalt-200: #c3c6cb;
+  --color-asphalt-300: #9ea2aa;
+  --color-asphalt-400: #7a7f89;
+  --color-asphalt-500: #61656e;
+  --color-asphalt-600: #4d5059;
+  --color-asphalt-700: #41434a;
+  --color-asphalt-800: #38393f;
+  --color-asphalt-900: #1a1b1e;
+}
+
+:root {
+  --background: #1a1b1e;
+  --foreground: #f6f6f7;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+  cursor: url('/images/wrench.svg') 4 4, auto;
+}
+
+/* Tıklanabilir tüm elementler için (Linkler, Butonlar) */
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+label {
+  cursor: url('/images/wrench.svg') 4 4, pointer !important;
+}
+
+
+h1 {
+  @apply text-5xl md:text-7xl font-black tracking-tight;
+  font-family: 'Oswald', var(--font-inter), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  @apply text-4xl md:text-6xl font-bold tracking-tight;
+  font-family: 'Oswald', var(--font-inter), sans-serif;
+  text-transform: uppercase;
+}
+
+h3 {
+  @apply text-2xl md:text-4xl font-semibold;
+}
+
+.btn-primary {
+  @apply bg-burnt-600 hover:bg-burnt-700 text-white px-8 py-4 font-bold uppercase tracking-wider transition-all duration-300 inline-flex items-center justify-center text-center relative overflow-hidden;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  min-height: 56px;
+}
+
+.btn-primary::before {
+  content: '';
+  @apply absolute inset-0 bg-burnt-500 transform -translate-x-full transition-transform duration-300;
+  z-index: -1;
+}
+
+.btn-primary:hover::before {
+  transform: translateX(0);
+}
+
+.btn-secondary {
+  @apply bg-grease-600 hover:bg-grease-700 text-white px-8 py-4 font-bold uppercase tracking-wider transition-all duration-300 inline-flex items-center justify-center text-center border-2 border-grease-500;
+  min-height: 56px;
+}
+
+.btn-outline {
+  @apply border-2 border-burnt-600 text-burnt-500 hover:bg-burnt-600 hover:text-white px-8 py-4 font-bold uppercase tracking-wider transition-all duration-300 inline-flex items-center justify-center text-center;
+  min-height: 56px;
+}
+
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  @apply bg-asphalt-800 rounded-none shadow-2xl hover:shadow-burnt-600/20 transition-all duration-500 border border-asphalt-700 hover:border-burnt-600/50 hover:-translate-y-2;
+}
+
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-burnt-500;
+}
+
+/* Parallax Container */
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+/* Vignette Effect */
+.vignette {
+  position: relative;
+}
+
+.vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(26, 27, 30, 0.8) 100%);
+  pointer-events: none;
+}
+
+/* Staggered Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes drawLine {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.stagger-item {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stagger-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stagger-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stagger-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.stagger-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.stagger-item:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* Scroll-triggered animations */
+.animate-in {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.animate-scale {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+/* Hover effects with GPU acceleration */
+.hover-lift {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  will-change: transform;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+/* Smooth line draw */
+.draw-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.draw-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-burnt-600);
+  animation: drawLine 1s ease-out forwards;
+}
+
+/* Watermark Letters */
+.watermark-letter {
+  position: absolute;
+  font-size: 20rem;
+  font-weight: 900;
+  color: rgba(239, 95, 43, 0.03);
+  font-family: 'Oswald', sans-serif;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Group Hover Support - Manual Implementation */
+/* Removed - using direct hover instead */
+
+/* Mechanical Chain Animation */
+@keyframes slideChain {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
