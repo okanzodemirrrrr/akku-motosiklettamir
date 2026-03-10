@@ -1,7 +1,7 @@
 // Supabase Client and Helper Functions
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { Service, GalleryItem, FutureProduct, Listing, ServiceWork, ServicesResponse, GalleryResponse, ProductsResponse, ListingsResponse, ServiceWorksResponse } from './types';
+import { Listing, ServiceWork, ServicesResponse, GalleryResponse, ProductsResponse, ListingsResponse, ServiceWorksResponse } from './types';
 
 let supabaseInstance: SupabaseClient | null = null;
 

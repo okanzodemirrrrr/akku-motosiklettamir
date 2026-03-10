@@ -61,7 +61,7 @@ export default function Reviews() {
 
                             {/* Review Text */}
                             <p className="text-asphalt-300 leading-relaxed mb-8 italic flex-grow">
-                                "{review.text}"
+                                &quot;{review.text}&quot;
                             </p>
 
                             {/* Reviewer Profile */}

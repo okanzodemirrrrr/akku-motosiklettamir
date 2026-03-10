@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, MapPin } from 'lucide-react';
+
 
 /* ── SVG Dişli (Gear) Bileşeni (Gerçekçi/Endüstriyel Tema) ── */
 function Gear({ size, teeth, className, style }: { size: number; teeth: number; className?: string; style?: React.CSSProperties; }) {
@@ -75,16 +76,14 @@ function Piston({ className, style }: { className?: string; style?: React.CSSPro
 }
 
 export default function Hero() {
-  const [scrollY, setScrollY] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+  const scrollY = useSyncExternalStore(
+    (cb) => {
+      window.addEventListener('scroll', cb, { passive: true });
+      return () => window.removeEventListener('scroll', cb);
+    },
+    () => window.scrollY,
+    () => 0
+  );
   return (
     <section className="relative h-screen min-h-[600px] overflow-hidden">
       {/* ── Koyu Gradient Arka Plan ── */}
@@ -97,7 +96,7 @@ export default function Hero() {
       />
 
       {/* ── Animasyonlu Mekanik Arka Plan ── */}
-      {isMounted && (
+      {typeof window !== 'undefined' && (
         <div
           className="absolute inset-0 pointer-events-none overflow-hidden"
           style={{ transform: `translateY(${scrollY * 0.3}px)` }}

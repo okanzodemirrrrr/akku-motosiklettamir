@@ -32,7 +32,7 @@ export async function uploadImage(
   try {
     // Import supabase client dynamically to avoid build-time errors
     const { createClient } = await import('@supabase/supabase-js');
-    
+
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -60,7 +60,7 @@ export async function uploadImage(
     const filePath = path ? `${path}/${fileName}` : fileName;
 
     // Upload to Supabase Storage
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from(bucket)
       .upload(filePath, fileToUpload, {
         cacheControl: '3600',
@@ -106,7 +106,7 @@ export async function deleteImage(
   try {
     // Import supabase client dynamically
     const { createClient } = await import('@supabase/supabase-js');
-    
+
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
