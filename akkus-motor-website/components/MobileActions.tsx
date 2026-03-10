@@ -2,7 +2,7 @@ import { Phone, Navigation } from 'lucide-react';
 
 export default function MobileActions() {
   const phone = '+905348798755';
-  const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=Samsun';
+  const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=41.492721,36.083815';
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
@@ -17,7 +17,7 @@ export default function MobileActions() {
           <Phone className="w-5 h-5" />
           <span>Ara</span>
         </a>
-        
+
         <a
           href={mapsUrl}
           target="_blank"
