@@ -4,5 +4,12 @@
   "framework": "nextjs",
   "regions": [
     "iad1"
-  ]
+  ],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "https://cburhqbhmvqcymbbfjxk.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNidXJocWJobXZxY3ltYmJmanhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMDAwMTIsImV4cCI6MjA4Nzg3NjAxMn0.aoypd1j7TReKj37V1vPIPR8hvQjs_2KsTelGCVgUiLI",
+    "NEXT_PUBLIC_SITE_URL": "https://akkus-motor-website.vercel.app",
+    "NEXT_PUBLIC_PHONE_NUMBER": "+905348798755",
+    "NEXT_PUBLIC_WHATSAPP_NUMBER": "905348798755"
+  }
 }

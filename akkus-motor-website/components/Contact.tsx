@@ -140,12 +140,9 @@ export default function Contact() {
         {/* CTA Section */}
         <div className="mt-20 text-center">
           <div className="card p-12 bg-gradient-to-br from-asphalt-800 to-asphalt-900 border-burnt-600/20">
-            <h3 className="text-3xl md:text-4xl font-bold text-asphalt-50 mb-4">
+            <h3 className="text-3xl md:text-4xl font-bold text-asphalt-50 mb-6">
               Motorunuz için <span className="text-burnt-500">en iyi bakım</span>
             </h3>
-            <p className="text-asphalt-300 text-lg mb-8 max-w-2xl mx-auto">
-              20 yıllık tecrübemizle motorunuza ve bisikletinize güvenle emanet edebilirsiniz.
-            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={`tel:${businessInfo.phone}`} className="btn-primary">
                 <Phone className="w-5 h-5 inline mr-2" />
