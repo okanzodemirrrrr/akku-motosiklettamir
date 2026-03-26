@@ -196,7 +196,7 @@ export async function getGalleryItemsByCategory(category: string): Promise<Galle
 
 // ── Listings ──────────────────────────────────────────────
 
-export async function getListings(type: 'satilik' | 'kiralik'): Promise<ListingsResponse> {
+export async function getListings(type: 'satilik' | 'kiralik', category: 'motosiklet' | 'bisiklet'): Promise<ListingsResponse> {
   const supabase = getSupabaseClient();
 
   if (!supabase) {
@@ -208,6 +208,7 @@ export async function getListings(type: 'satilik' | 'kiralik'): Promise<Listings
       .from('listings')
       .select('*')
       .eq('type', type)
+      .eq('category', category)
       .eq('is_visible', true)
       .order('created_at', { ascending: false });
 

@@ -47,6 +47,7 @@ export interface ApiResponse<T> {
 export interface Listing {
   id: string;
   type: 'satilik' | 'kiralik';
+  category: 'motosiklet' | 'bisiklet';
   title: string;
   brand: string;
   model: string;

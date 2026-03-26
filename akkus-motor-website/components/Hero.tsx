@@ -85,7 +85,7 @@ export default function Hero() {
     () => 0
   );
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden">
+    <section className="relative h-screen min-h-[600px] overflow-hidden pt-20">
       {/* ── Koyu Gradient Arka Plan ── */}
       <div
         className="absolute inset-0"
@@ -282,9 +282,6 @@ export default function Hero() {
                 <Phone className="w-5 h-5" />
                 <span>Hemen Ara</span>
               </a>
-              <Link href="#hizmetler" className="btn-outline flex items-center justify-center gap-3">
-                <span>Hizmetlerimiz</span>
-              </Link>
             </div>
 
             {/* Quick Info */}

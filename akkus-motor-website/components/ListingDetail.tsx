@@ -22,47 +22,69 @@ interface ListingDetailProps {
 export default function ListingDetail({ listing }: ListingDetailProps) {
     const [selectedImage, setSelectedImage] = useState(0);
     const isRental = listing.type === 'kiralik';
+    const isBicycle = listing.category === 'bisiklet';
     const images = listing.images ?? [];
 
-    // Teknik özellik satırları
-    const specs: { label: string; value: string | number | undefined; icon: React.ReactNode }[] = [
-        { label: 'Marka', value: listing.brand, icon: <Bike className="w-4 h-4" /> },
-        { label: 'Model', value: listing.model, icon: <Bike className="w-4 h-4" /> },
-        { label: 'Yıl', value: listing.year, icon: <Calendar className="w-4 h-4" /> },
-        {
-            label: 'Kilometre',
-            value: listing.km != null ? `${listing.km.toLocaleString('tr-TR')} km` : undefined,
-            icon: <Gauge className="w-4 h-4" />,
-        },
-        {
-            label: 'Motor Hacmi',
-            value: listing.engine_cc != null ? `${listing.engine_cc} cc` : undefined,
-            icon: <Cog className="w-4 h-4" />,
-        },
-        {
-            label: 'Silindir Sayısı',
-            value: listing.cylinder_count ?? undefined,
-            icon: <Cylinder className="w-4 h-4" />,
-        },
-        { label: 'Vites', value: listing.gearbox ?? undefined, icon: <Cog className="w-4 h-4" /> },
-        {
-            label: 'Hasar Kaydı',
-            value: listing.damage_record ?? 'Yok',
-            icon: <ShieldCheck className="w-4 h-4" />,
-        },
-    ].filter((s) => s.value != null && s.value !== '');
+    // Teknik özellik satırları - category'ye göre dinamik
+    const specs: { label: string; value: string | number | undefined; icon: React.ReactNode }[] = isBicycle
+        ? [
+            // Bisiklet için sadece temel özellikler
+            { label: 'Marka', value: listing.brand, icon: <Bike className="w-4 h-4" /> },
+            { label: 'Model', value: listing.model, icon: <Bike className="w-4 h-4" /> },
+            { label: 'Yıl', value: listing.year, icon: <Calendar className="w-4 h-4" /> },
+            { label: 'Vites', value: listing.gearbox ?? undefined, icon: <Cog className="w-4 h-4" /> },
+        ].filter((s) => s.value != null && s.value !== '')
+        : [
+            // Motosiklet için tüm özellikler
+            { label: 'Marka', value: listing.brand, icon: <Bike className="w-4 h-4" /> },
+            { label: 'Model', value: listing.model, icon: <Bike className="w-4 h-4" /> },
+            { label: 'Yıl', value: listing.year, icon: <Calendar className="w-4 h-4" /> },
+            {
+                label: 'Kilometre',
+                value: listing.km != null ? `${listing.km.toLocaleString('tr-TR')} km` : undefined,
+                icon: <Gauge className="w-4 h-4" />,
+            },
+            {
+                label: 'Motor Hacmi',
+                value: listing.engine_cc != null ? `${listing.engine_cc} cc` : undefined,
+                icon: <Cog className="w-4 h-4" />,
+            },
+            {
+                label: 'Silindir Sayısı',
+                value: listing.cylinder_count ?? undefined,
+                icon: <Cylinder className="w-4 h-4" />,
+            },
+            { label: 'Vites', value: listing.gearbox ?? undefined, icon: <Cog className="w-4 h-4" /> },
+            {
+                label: 'Hasar Kaydı',
+                value: listing.damage_record ?? 'Yok',
+                icon: <ShieldCheck className="w-4 h-4" />,
+            },
+        ].filter((s) => s.value != null && s.value !== '');
+
+    const backUrl = isRental 
+        ? `/kiralik-motosikletler` 
+        : listing.category === 'bisiklet' 
+            ? `/satilik-bisikletler` 
+            : `/satilik-motosikletler`;
+    
+    const backLabel = isRental 
+        ? 'Kiralık Motosikletler' 
+        : listing.category === 'bisiklet' 
+            ? 'Satılık Bisikletler' 
+            : 'Satılık Motosikletler';
 
     return (
         <div className="min-h-screen bg-asphalt-900 pt-24 pb-16">
             <div className="container-custom">
                 {/* Geri Butonu */}
                 <Link
-                    href={isRental ? '/kiralik-ilanlar' : '/satilik-ilanlar'}
+                    href={backUrl}
                     className="inline-flex items-center gap-2 text-asphalt-300 hover:text-burnt-500 transition-colors mb-8 group"
                 >
                     <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                     <span className="text-sm uppercase tracking-wider font-semibold">
-                        {isRental ? 'Kiralık İlanlar' : 'Satılık İlanlar'}
+                        {backLabel}
                     </span>
                 </Link>
 
